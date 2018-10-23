@@ -24,7 +24,8 @@ nested_fn  = args.get('--nested-cascade', r"D:\mycode\mypython\python-study\face
 * 射击小游戏  
 ![game](game_rabbit/screen.gif)
 
-  
-
+## game_tank
+AI 坦克游戏
+![](./game_tank/game.png)
 
 
