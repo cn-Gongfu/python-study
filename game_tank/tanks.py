@@ -159,32 +159,49 @@ class myTank(pygame.sprite.Sprite):
                     self.track = 4
             
         else:
-            # 目标位置
-            # 距离目标哪个轴距最短, 向哪个方向移动
-            if abs(disty) < abs(distx):
-                if disty > 20:
-                    self.track = 3
-                elif disty < -20:
-                    self.track = 4        
-            else:
-                if distx > 20:
-                    self.track = 1
-                elif distx < -20:
-                    self.track = 2
+            # 没有受到攻击           
+            if not self.bullet.being:
+                 # 如果有炮弹 找位置发射
+                # 目标位置
+                # 距离目标哪个轴距最短, 向哪个方向移动
+                if abs(disty) < abs(distx):
+                    if disty > 20:
+                        self.track = 3
+                    elif disty < -20:
+                        self.track = 4        
+                else:
+                    if distx > 20:
+                        self.track = 1
+                    elif distx < -20:
+                        self.track = 2
 
-            # 计算目标方向 发射炮弹
-            if abs(disty) <= 24:
-                if distx > 0:
-                    self.track = 1
+                # 计算目标方向 发射炮弹
+                if abs(disty) <= 24:
+                    if distx > 0:
+                        self.track = 1
+                    else:
+                        self.track = 2
+                    self.is_shoot = True
+                elif abs(distx) <= 24:
+                    if disty > 0:
+                        self.track = 3
+                    else:
+                        self.track = 4
+                    self.is_shoot = True
+            else:
+                if abs(disty) > abs(distx):
+                    if distx > 0:
+                        self.track = 2
+                    else:
+                        self.track = 1
                 else:
-                    self.track = 2
-                self.is_shoot = True
-            elif abs(distx) <= 24:
-                if disty > 0:
-                    self.track = 3
-                else:
-                    self.track = 4
-                self.is_shoot = True
+                    if disty > 0:
+                        self.track = 4
+                    else:
+                        self.track = 3
+
+
+                
 
         if self.track == 1:
             self.move_left(tanksGroup)
